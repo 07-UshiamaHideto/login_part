@@ -1,0 +1,13 @@
+
+header h1 {
+  font-size: 20px;letter-spacing: 2px;
+  margin: 10px 20px;text-align: left;
+}
+
+header ul {
+  display: flex;flex-direction: row;flex-wrap: wrap;
+}
+
+header li {
+  width: 40px;
+}

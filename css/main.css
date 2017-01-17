@@ -1,0 +1,112 @@
+header {
+  margin-bottom: 10px;
+}
+
+header h1 {
+  font-size: 20px;letter-spacing: 2px;
+  margin: 10px 20px;text-align: left;
+}
+
+header .head_list {
+  text-align: left;
+  padding-right: 10px;
+  border-bottom: 1px solid #000;
+}
+
+header ul {
+  list-style-type: none;
+  display: flex;justify-content: flex-end;padding-bottom: 10px;
+}
+
+header li {
+  width: 60px;padding: 5px;text-align: center;
+  border: 1px solid #ddd;background-color: #eee;border-radius: 5px;
+  flex-direction: row;flex-wrap: wrap;
+}
+
+header li + li {
+  margin-left: 5px;
+}
+
+.u_regi,.u_login {
+  width:450px;
+  margin:15px auto;
+}
+
+.u_regi span,.u_login span{
+  display:inline-block;
+  vertical-align:top;
+  padding-top:5px;
+  width:100px;
+}
+.u_regi li + li,.u_login li + li{
+  margin-top:10px;
+}
+
+.u_regi input[type="text"],.u_login input[type="text"] {
+  width:200px;
+  padding:5px;
+  border-radius:3px;
+}
+
+.u_regi input[type="password"],.u_login input[type="password"]{
+  width:200px;
+  padding:5px;
+  border-radius:3px;
+}
+
+.u_regi select{
+  padding:5px 15px;
+  border-radius:3px;
+}
+
+.u_regi textarea{
+  height:100px;
+  width:300px;
+  padding:5px;
+  border-radius:3px;
+  vertical-align:top;
+}
+
+.u_regi input[type="submit"],.u_login input[type="submit"] {
+  padding:5px 20px;
+  border-radius:3px;
+}
+
+.user_table {
+  border:1px solid #ccc;
+  margin:0 10px;
+  border-radius:5px;
+}
+
+.user_table ol {
+  display: table-row;
+  border-top
+}
+
+.user_table ol+ol {
+  border-top:1px solid #ddd;
+}
+
+.user_table li {
+  display: table-cell;
+  padding:5px 7px;
+  border-top:1px solid #ddd;
+}
+
+.user_table ol:first-child li {
+  border-top:none;
+}
+
+.user_table li+li {
+  border-left:1px solid #ddd;
+}
+
+.u_login {
+
+}
+
+footer {
+  border-top:1px solid #ccc;
+  text-align: center;margin-top: 15px;padding: 15px 0;
+}
