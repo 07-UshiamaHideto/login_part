@@ -49,18 +49,18 @@ header li + li {
   border-radius:3px;
 }
 
-.u_regi input[type="password"],.u_login input[type="password"]{
+.u_regi input[type="password"],.u_login input[type="password"] {
   width:200px;
   padding:5px;
   border-radius:3px;
 }
 
-.u_regi select{
+.u_regi select {
   padding:5px 15px;
   border-radius:3px;
 }
 
-.u_regi textarea{
+.u_regi textarea {
   height:100px;
   width:300px;
   padding:5px;
@@ -69,8 +69,13 @@ header li + li {
 }
 
 .u_regi input[type="submit"],.u_login input[type="submit"] {
-  padding:5px 20px;
-  border-radius:3px;
+  padding: 5px 5px 5px 20px;
+  border-radius: 3px;
+  margin: 0 auto;
+  letter-spacing: 15px;
+  color: #fff;
+  background-color: #00f;
+  border: 1px solid #616673;
 }
 
 .user_table {

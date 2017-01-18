@@ -75,10 +75,10 @@ if(count($errors) === 0){
 
 				$_SESSION['account'] = $account;
 				$_SESSION['ad'] = $row[admin];
+				$_SESSION['id'] = $row[id];
 
-//				echo "合致";
-				// header("Location: user_page.php");
-				// exit();
+				 header("Location: user_page.php");
+				 exit();
 			}else{
 				$errors['password'] = "パスワードが一致しません。";
 			}
