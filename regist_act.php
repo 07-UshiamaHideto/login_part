@@ -17,6 +17,8 @@ $memo = isset($_POST['memo']) ? $_POST['memo'] : NULL;
 $admin = isset($_POST['admin']) ? $_POST['admin'] : NULL;
 $flag = 1;
 
+$errors = array();
+
 //アカウント入力判定
 //前後にある半角全角スペースを削除
 $account = spaceTrim($email);
@@ -76,7 +78,7 @@ if(count($errors) === 0){
     exit("QUERY ERROR:".$error[2]);
   }else{
     echo "投入終了";
-  #  header("Location: user_lsit.php");
+    header("Location: user_list.php");
     exit;
   }
 }

@@ -74,6 +74,12 @@ if(count($errors) === 0){
 				session_regenerate_id(true);
 
 				$_SESSION['account'] = $account;
+				if($_SESSION['name'] == "") {
+					$name  = $row[email];
+				} else {
+					$name  = $row[name];
+				}
+				$_SESSION['name'] = $name;
 				$_SESSION['ad'] = $row[admin];
 				$_SESSION['id'] = $row[id];
 

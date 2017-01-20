@@ -1,12 +1,16 @@
 header {
-  margin-bottom: 10px;
+  margin-bottom: 10px;padding-top:5px;
+  background-image: linear-gradient(to bottom, #5cb85c 0%, #419641 100%);color:#fff;
 }
 
 header h1 {
-  font-size: 20px;letter-spacing: 2px;
+  font-size: 24px;letter-spacing: 2px;color:#fff;
   margin: 10px 20px;text-align: left;
 }
 
+header h1 span {
+  margin-left:10px;font-size: 16px;
+}
 header .head_list {
   text-align: left;
   padding-right: 10px;
@@ -19,13 +23,30 @@ header ul {
 }
 
 header li {
-  width: 60px;padding: 5px;text-align: center;
-  border: 1px solid #ddd;background-color: #eee;border-radius: 5px;
   flex-direction: row;flex-wrap: wrap;
+  vertical-align: middle;
 }
+
+.name_h {
+  padding-top:7px;letter-spacing:1px;font-weight:bold;color:#fff;
+}
+
+header li a{
+  display:inline-block;width: 60px;padding: 7px 5px;text-align: center;
+  color:#fff;border: 1px solid #245580;background-image: linear-gradient(to bottom, #337ab7 0%, #265a88 100%);border-radius: 5px;
+}
+
+header li a:hover {
+  opacity:0.6;
+}
+
 
 header li + li {
   margin-left: 5px;
+}
+
+.main {
+  padding-top: 15px;padding-bottom: 15px;
 }
 
 .u_regi,.u_login {
@@ -79,14 +100,18 @@ header li + li {
 }
 
 .user_table {
-  border:1px solid #ccc;
-  margin:0 10px;
-  border-radius:5px;
+  display: table;
+  border:1px solid #aaa;
+  margin:10px auto;
+  border-radius:3px;
 }
 
 .user_table ol {
   display: table-row;
-  border-top
+}
+
+ol.table_h {
+  background-color:#eee;
 }
 
 .user_table ol+ol {
@@ -95,7 +120,7 @@ header li + li {
 
 .user_table li {
   display: table-cell;
-  padding:5px 7px;
+  padding:10px 7px;
   border-top:1px solid #ddd;
 }
 
@@ -105,6 +130,19 @@ header li + li {
 
 .user_table li+li {
   border-left:1px solid #ddd;
+}
+
+.user_table li a {
+  display:inline-block;width:95px;text-align:center;padding:7px 5px;
+  color:#fff;background-image: linear-gradient(to bottom, #337ab7 0%, #265a88 100%);border:1px solid #245580;border-radius:5px;
+}
+
+.user_table li a:hover {
+  opacity:0.6;
+}
+
+.user_table li a + a {
+  margin-left:7px;
 }
 
 .u_login {

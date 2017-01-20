@@ -26,10 +26,16 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $view = '';
 $view .= '<div class="user_table">';
-$view .=  '<ol><li>ID</li><li>name</li><li>mail</li><li>sns</li><li>meno</li><li>admin</li><li>update</li><li>create</li></ol>';
+$view .=  '<ol class="table_h"><li>ID</li><li>name</li><li>mail</li><li>sns</li><li>メモ</li><li>権限</li><li> </li><li>update</li><li>create</li></ol>';
 
 foreach($results as $row) {
-	$view .= "<ol><li>".$row["id"]." </li><li>".$row["name"]."</li><li>".$row["mail"]."</li><li>".$row["sns"]."</li><li>".$row["memo"]."</li><li>".$row["admin"]." </li><li>".$row["udate"]." </li><li>".$row["idate"]."</li></ol>";
+	$btn_c = '<li>'.'<a href="user_edit.php?id='.$row["id"].'">詳細変更</a>'.'<a href="password_change.php?id='.$row["id"].'">パスワード変更</a>'.'</li>';
+	if($row["admin"]=="1") {
+		$admin = "管理者";
+	} else {
+		$admin = "ユーザー";
+	}
+	$view .= "<ol><li>".$row["id"]." </li><li>".$row["name"]."</li><li>".$row["mail"]."</li><li>".$row["sns"]."</li><li>".$row["memo"]."</li><li>".$admin." </li>".$btn_c."<li>".$row["udate"]." </li><li>".$row["idate"]."</li></ol>";
 }
 $view .= '</div>';
 // table閉じタグで終了

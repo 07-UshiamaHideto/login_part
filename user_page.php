@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <?php
 session_start();
-//クロスサイトリクエストフォージェリ（CSRF）対策
-$_SESSION['token'] = base64_encode(openssl_random_pseudo_bytes(32));
-$token = $_SESSION['token'];
 
 // ログイン状態のチェック
-if (!isset($_SESSION["account"])) {
+if (!isset($_SESSION["account"])):
 	header("Location: Login.php");
 	exit();
-}
+else:
+  $name_h2 = 'Name: '.$_SESSION["account"];
+endif;
 
 require_once("functions.php");
 
@@ -40,7 +39,7 @@ $pdo = null;
 <html>
   <head>
     <meta charset="utf-8">
-    <title>登録ユーザーリスト</title>
+    <title></title>
     <script src="js/login.js"></script>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/main.css">
@@ -48,6 +47,7 @@ $pdo = null;
   <body>
     <?php include("header.php"); ?>
     <div class="main">
+			<h2><?php echo $name_h2; ?></h2>
       <?php echo $view; ?>
     </div>
     <?php include("footer.php"); ?>
