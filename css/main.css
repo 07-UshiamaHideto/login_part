@@ -149,6 +149,67 @@ ol.table_h {
 
 }
 
+/* カレンダー */
+.calender {
+/*  border:1px solid #aaa; */
+  margin:10px auto;
+  border-radius:5px;
+}
+
+.calender caption {
+}
+
+.calender tr {
+
+}
+
+.calender th {
+  padding:5px 5px;
+  text-align: center;
+}
+
+.calender .week td {
+  padding:5px 7px;
+  font-size: 80%;
+  font-weight:bold;
+}
+
+.calender .week td:first-child {
+  border-radius:3px 0 0 0;
+}
+
+.calender td {
+  padding:5px 0;
+  border:1px solid #ddd;
+  text-align: center;
+}
+
+.calender td:first-child {
+  color:#f00;
+  background-color:#ffe5e5;
+}
+
+.calender td:last-child {
+  color:#00f;
+  background-color:#dbe7f9;
+}
+
+.calender td.mo_day {
+  color:#ddd;
+}
+
+.calender .today {
+  background-image: linear-gradient(to bottom, #337ab7 0%, #265a88 100%);
+  border-radius:3px;
+  color:#fff;
+  font-weight:bold;
+}
+
+.calender .btn_today {
+  background-color: #eee;
+  font-weight:normal;
+}
+
 footer {
   border-top:1px solid #ccc;
   text-align: center;margin-top: 15px;padding: 15px 0;
