@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>カレンダー</title>
+<meta charset="utf-8">
+<script type="text/javascript">
+// ページを開いたときの処理
+window.onload = function() {
+  setCalendar();
+};
+
+// カレンダー生成（引数は前月や翌月移動に備えてのもの）
+function setCalendar(yy, mm) {
+  var yy, mm, tday;
+  // yy,mmが未定義なら（つまり一番最初にページを開いたときに）そのときの年月を変数yy,mmに付与する
+  if (!yy && !mm) {
+    var yy = new Date().getFullYear();
+    var mm = new Date().getMonth();
+    var tday = new Date().getDate();
+    mm = mm -(-1); // mmは前月を指してしまうのでプラス1してあげる（-(-1)はJavaScriptが足し算苦手なため）
+  }
+  var bf_date = new Date(yy,mm-1,0); // 前月末
+  var tm_date = new Date(yy,mm,0); // 当月末
+  bfd = bf_date.getDate(); // 前月末日
+  bfw = bf_date.getDay(); // 前月末曜日
+  tmd = tm_date.getDate(); // 当月末日
+  tmw = tm_date.getDay(); // 当月末曜日
+
+  // カレンダーに埋める数字を配列daysに格納する（5行で済めば35要素、6行なら42要素）
+  var days = [];
+
+  // 前月末が土曜日以外（日曜日から0,1,2・・・土曜日が6）
+  if (bfw != 6) {
+    // 前月最終日曜日から月末曜日までの日付（for逆回しに注意）
+    for (var i=bfw; i>=0; i--) {
+      days[bfw-i] = (bfd - i);
+    }
+    // 当月日付
+    for (var i=1; i<=tmd; i++) {
+      days[bfw+i] = i;
+    }
+    // 当月末が35番目までに終了
+    if ((bfw + tmd) <= 34) {
+      // 翌月日付
+      for (var i=1; i<35-bfw-tmd; i++) {
+        days[bfw+tmd+i] = i;
+      }
+    // 当月末が35番目を超えて終了
+    } else if((bfw + tmd) > 34) {
+      // 翌月日付
+      for (var i=1; i<42-bfw-tmd; i++) {
+        days[bfw+tmd+i] = i;
+      }
+    }
+
+  // 前月末が土曜日（何月であろうと5行で足りる）
+  } else if(bfw == 6) {
+    // 当月日付
+    for (var i=1; i<=tmd; i++) {
+      days[i-1] = i;
+    }
+    // 翌月日付
+    for (var i=0; i<35-tmd; i++) {
+      days[tmd+i] = i + 1;
+    }
+  }
+
+  // DOM生成（いよいよ描画）
+  var cale = '<div class="cale_part">';
+
+  cale += '<div class="pn">';
+  // 前月へ移動リンク
+  cale += "<a href='#' yy='"+yy+"' mm='"+mm+"' onclick='backmm(this);return false;'>&laquo;</a>";
+  // 翌月へ移動リンク
+  cale += '<span>'+yy+'年'+mm+'月</span>';
+  cale += "<a href='#' yy='"+yy+"' mm='"+mm+"' onclick='nextmm(this);return false;'>&raquo;</a>";
+  cale += "</div>";
+  cale += '<table>';
+
+  var week_p = ["日", "月", "火", "水", "木", "金", "土"];
+  cale += "<tr>";
+  for (var i in week_p) {
+    cale += "<th>"+week_p[i]+"</th>";
+  }
+
+  // ここからさきほど作った配列daysの中身を展開していく
+
+  // 行数を計算する
+  var row = days.length/7;
+  // 行数分だけ回す
+  for (var i=1; i<=row; i++) {
+    cale += "<tr>";
+
+    for (var j=7*i-6; j<=7*i; j++) {
+
+      var clod = "", pm;
+      var pd = days[j-1];
+      if (i >= 5 && pd < 7) {
+        clod = " day_o";
+        if (mm==12) {
+          pm = 1; py = yy + 1;
+        } else {
+          pm = mm + 1; py = yy;
+        }
+      } else if (i==1 && pd > 21) {
+        clod = " day_o";
+        if (mm==1) {
+          pm = 12; py = yy - 1;
+        } else {
+          pm = mm - 1;
+        }
+      } else {
+        pm = mm; py = yy;
+      }
+      if (mm==pm && tday==pd) {
+        clod += " to_day"
+      }
+      cale += '<td class="daylink'+clod+'" row="'+i+'" val="'+py+'-'+pm+'-'+pd+'" onclick="show(this);return false;">'+pd+'</td>';
+    }
+    cale += "</tr>";
+  }
+  cale += "</table>";
+  // 今月へ戻るリンク
+  cale += "<a href='#' onclick='setCalendar();return false;'>今月 </a>";
+  cale += "</div>";
+
+  // 最後にhtmlへどかっと渡す
+  document.getElementById("result").innerHTML = cale;
+}
+
+function backmm(e) {
+  var yy = e.getAttribute('yy');
+  var mm = e.getAttribute('mm');
+  if (mm != 1) {
+    mm = mm-1;
+  } else if (mm == 1) {
+    mm = 12;
+    yy = yy - 1;
+  }
+  setCalendar(yy, mm);
+}
+
+// 翌月へ移動
+function nextmm(e) {
+  var yy = e.getAttribute('yy');
+  var mm = e.getAttribute('mm');
+  if (mm != 12) {
+    mm = parseInt(mm) + 1;
+  } else if (mm == 12) {
+    mm = 1;
+    yy = parseInt(yy) + 1;
+  }
+  setCalendar(yy, mm);
+}
+
+// 日付をクリックしたときに日付をアラートさせる
+function show(e) {
+  var row = e.getAttribute('row');
+  var cdate = e.getAttribute('val');
+
+  alert('Date: '+cdate);
+}
+</script>
+
+<style type="text/css">
+#result {
+  text-align: center;
+}
+.cale_part {
+  display:inline-block;
+  text-align: center;
+  margin:0 auto;
+}
+table {
+  border: solid 1px #000;
+  border-radius:3px;
+  margin:0 auto;
+  border-collapse: separate;
+  border-spacing: 0px;
+}
+.pn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pn a {
+  text-decoration: none;
+  font-size: 30px;
+  line-height: 23px;
+  padding:0 5px 2px 5px;
+}
+th {
+  border-bottom: solid 1px #999;
+  text-align: center;
+  padding:2px 4px;
+}
+th+th {
+  border-left: solid 1px #aaa;
+}
+
+td {
+  border-top: solid 1px #bbb;
+  text-align: center;
+  padding:2px 4px;
+}
+
+td:first-child,th:first-child {
+  color:#f00;
+  background-color:#ffe5e5;
+}
+
+td:last-child,th:last-child {
+  color:#00f;
+  background-color:#dbe7f9;
+}
+
+td+td {
+  border-left: solid 1px #bbb;
+}
+
+td.day_o {
+  color:#ccc;
+}
+td.to_day {
+  background-color:#27ff00;
+}
+
+.daylink {
+  cursor: pointer;
+  // display: block;
+}
+.daylink:hover {
+  background-color: #ff0000;
+}
+</style>
+</head>
+<body>
+<div id="result"></div>
+</body>
+</html>

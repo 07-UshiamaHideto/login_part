@@ -99,6 +99,50 @@ header li + li {
   border: 1px solid #616673;
 }
 
+.f_atted {
+  width:450px;
+  margin:15px auto;
+}
+
+.f_atted span{
+  display:inline-block;
+  vertical-align:top;
+  padding-top:5px;
+  width:100px;
+}
+.f_atted li + li{
+  margin-top:10px;
+}
+
+.f_atted input[type="text"] {
+  width:100px;
+  padding:5px;
+  border-radius:3px;
+}
+
+.f_atted select {
+  padding:5px 15px;
+  border-radius:3px;
+}
+
+.f_atted textarea {
+  height:100px;
+  width:300px;
+  padding:5px;
+  border-radius:3px;
+  vertical-align:top;
+}
+
+.f_atted input[type="submit"],.f_atted input[type="submit"] {
+  padding: 5px 5px 5px 20px;
+  border-radius: 3px;
+  margin: 0 auto;
+  letter-spacing: 15px;
+  color: #fff;
+  background-color: #00f;
+  border: 1px solid #616673;
+}
+
 .user_table {
   display: table;
   border:1px solid #aaa;
